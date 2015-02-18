@@ -1,4 +1,4 @@
-# meteor-nycod-wifi-locations
+# meteor-odnyc-wifilocations
 Meteor package containing sample data set from NYC WiFi Hotspot Locations
 
 ### Attribution
