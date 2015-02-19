@@ -1,7 +1,13 @@
 // Declare Collections
 WifiLocs = new Meteor.Collection('WifiLocs');
 
+// Customized debug
+Debug = Debug || {};
+Debug.odnyc = function(msg, data){
+	console.log("[odnyc-wifiloc] "+msg, data || "" );
+};
 
+// Server code
 if (Meteor.isServer){
 
 	// All startup initialization here
@@ -17,7 +23,7 @@ if (Meteor.isServer){
 			var dataset= JSON.parse(asset);
 			try { populateData(dataset); }
 			catch (err) {
-				console.log("\n[odnyc-wifiloc] loadAsset Error: "+err);
+				Debug.odnyc("loadAsset Error: "+err);
 			}
 		}
 	};
@@ -30,12 +36,10 @@ if (Meteor.isServer){
 			throw("Meta missing view:columns property.");
 
 		var metadata = [];
-		_.each(meta.view.columns, function(item, index){
-			if (item.dataTypeName !== "meta_data"){		
-				metadata.push([
-					item.name, item.dataTypeName
-				]);
-			}
+		_.each(meta.view.columns, function(item, index){			
+			metadata.push([
+				item.name, item.dataTypeName
+			]);
 		});
 		return metadata;
 	};
@@ -47,18 +51,17 @@ if (Meteor.isServer){
 		if (!dataset.data) throw("Dataset missing data property.");
 
 		var meta = getMetadata(dataset.meta);
-		console.log("\n[odnyc-wifiloc] Data has "+
-			meta.length+" attributes.",meta);
-
-		var data = dataset.data;
+		var data = dataset.data, locdata=null;
 		_.each(data, function(item, index){
-			item._id = item[1];
-			WifiLocs.insert(item);
-			//console.log("\n[odnyc-wifiloc] Inserted Item: "+ 
-				//(index+1), item[11]);
+			locdata = { _id: item[1] };
+			_.each(item, function(locitem, i){
+				locdata[meta[i][0]] = locitem;
+			})
+
+			WifiLocs.insert(locdata);
+			//Debug.odnyc("Inserted record:",locdata);
 		});
-		console.log("\n[odnyc-wifiloc] Inserted "+
-			data.length+" location records");
+		Debug.odnyc("Inserted "+ data.length+" WifiLocs records", null);
 	};
 
 }
