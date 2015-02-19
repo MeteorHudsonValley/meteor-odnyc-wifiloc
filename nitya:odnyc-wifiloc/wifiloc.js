@@ -54,7 +54,8 @@ if (Meteor.isServer){
 		_.each(data, function(item, index){
 			item._id = item[1];
 			WifiLocs.insert(item);
-			//console.log("\n[odnyc-wifiloc] Inserted Item: "+ (index+1), item[11]);
+			//console.log("\n[odnyc-wifiloc] Inserted Item: "+ 
+				//(index+1), item[11]);
 		});
 		console.log("\n[odnyc-wifiloc] Inserted "+
 			data.length+" location records");
