@@ -1,14 +1,26 @@
+<!-- 1. Provide main layout here -->
 <head>
-  <title>odnyc-app</title>
+  <title>ODNYC Wifi Locations Mapped</title>
+  <meta name="viewport" 
+  	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
+    {{> map}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="map">
+    <div id="container"> 
+      <h1 class="title">WiFi Locations in NYC</h1>
+      <div id="map" class="map">
+      	<!-- Div which is used by Leaflet to render map -->
+      </div>
+      {{#each locations}}
+      	{{> marker}}
+      {{/each}}
+    </div>
+</template>
+
+<template name="marker">
+	<!-- Don't need anything, just trigger rendered() -->
 </template>

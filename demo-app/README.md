@@ -7,6 +7,6 @@ The data set was obtained from the NYC Open Data portal, under the [NYC Wi-Fi Ho
 ### Dataset
 Currently acquired as the CSV package from [this link](https://nycopendata.socrata.com/api/views/jd4g-ks2z/rows.csv?accessType=DOWNLOAD)
 
-### Schema
-TBD
+### Demo
+A version of the demo app is running at [odnyc-wifilocs.meteor.com](http://odnyc-wifilocs.meteor.com)
 

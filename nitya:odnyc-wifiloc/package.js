@@ -1,6 +1,6 @@
 Package.describe({
   name    : 'nitya:odnyc-wifiloc',
-  version : '1.0.4',
+  version : '1.1.1',
   summary : 'OpenDataNYC dataset for WiFi locations',
   git     : '',
   documentation: null

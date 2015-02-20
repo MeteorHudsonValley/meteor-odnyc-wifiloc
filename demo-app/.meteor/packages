@@ -7,4 +7,5 @@
 meteor-platform
 autopublish
 insecure
-nitya:odnyc-wifiloc
+mrt:leaflet-0.6.4
+nitya:odnyc-wifiloc@=1.1.1
